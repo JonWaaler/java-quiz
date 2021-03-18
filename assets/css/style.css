@@ -1,0 +1,120 @@
+/* COLOUR PALLETE */
+:root {
+  --blue: #3d8bcd;
+  --white: #ffffff;
+}
+
+header {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+}
+header h1 {
+  padding-bottom: 6px;
+  border-bottom: 2px var(--white) solid;
+}
+
+.quiz-background {
+  background-image: url("../oc-gonzalez-FbN2z3bEaSs-unsplash.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  background-position: 55%;
+  height: 100vh;
+  z-index: -10;
+}
+
+.quiz-time {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  top: -45px;
+  justify-content: center;
+  z-index: 10;
+}
+.quiz-time h5 {
+  padding: 4px;
+  margin-bottom: 0;
+  z-index: 999;
+}
+
+.quiz {
+  z-index: 999;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: center;
+  background-color: var(--blue);
+  position: relative;
+  top: -32px;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: var(--white);
+}
+
+.quiz-header h4 {
+  margin: 5px 15px;
+}
+
+.quiz-header img {
+  height: 32px;
+  margin: 5px 15px;
+}
+
+.quiz-content {
+  background-color: var(--white);
+  height: 425px;
+  width: 350px;
+  z-index: 9;
+  border-radius: 10px;
+  position: absolute;
+  top: 25%;
+}
+
+.questions {
+  text-align: center;
+}
+.questions h6 {
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.questions button {
+  margin: 5px auto;
+  width: 80%;
+  padding: 6px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 10px;
+  border: 1px #666666 solid;
+}
+
+.questions button:hover {
+  transition: 0.3s;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.questions button:focus {
+  transition: 0.3s;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+footer {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 16px;
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+}

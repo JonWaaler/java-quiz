@@ -15,9 +15,53 @@
     <!-- CSS LINK-->
     <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>Jon's Java Quiz</title>
+    <title>Jon's Quiz</title>
   </head>
   <body>
+    <!-- HEADER -->
+    <header>
+      <h1>Jon's Quiz</h1>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <div class="quiz-background">
+        <div class="quiz-content">
+          <!-- Contains the timer-->
+          <div class="quiz-time">
+            <h5>Time left:</h5>
+            <h5>70 sec</h5>
+          </div>
+
+          <!-- contains the quiz-->
+          <div class="quiz">
+            <div class="quiz-header">
+              <h4>JavaScript</h4>
+              <img
+                src="https://www.javascript.com/etc/clientlibs/pluralsight/main/images/js-logo-sm.png"
+                alt=""
+              />
+            </div>
+            <!-- Java interacts with this class for quiz functionality-->
+            <form class="questions">
+              <h6>What is not a valid variable type in JavaScript</h6>
+              <button>number</button>
+              <button>string</button>
+              <button>float</button>
+              <button>bool</button>
+            </form>
+            <button class="btn btn-success" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <h6>&copy; Copyright Jon Waaler 2021</h6>
+      <p><small>but not really it just looks professional!</small></p>
+    </footer>
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
