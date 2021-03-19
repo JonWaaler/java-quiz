@@ -30,7 +30,7 @@
           <!-- Contains the timer-->
           <div class="quiz-time">
             <h5>Time left:</h5>
-            <h5>70 sec</h5>
+            <h5>60 sec</h5>
           </div>
 
           <!-- contains the quiz-->
@@ -45,12 +45,49 @@
             <!-- Java interacts with this class for quiz functionality-->
             <form class="questions">
               <h6>What is not a valid variable type in JavaScript</h6>
-              <button>number</button>
-              <button>string</button>
-              <button>float</button>
-              <button>bool</button>
+              <input
+                class="btn-check"
+                type="radio"
+                id="ans1"
+                name="answers"
+                value="ans1"
+              />
+              <label class="btn btn-primary" for="ans1">number</label>
+
+              <input
+                class="btn-check"
+                type="radio"
+                id="ans2"
+                name="answers"
+                value="ans2"
+              />
+              <label class="btn btn-primary" for="ans2">float</label>
+
+              <input
+                class="btn-check"
+                type="radio"
+                id="ans3"
+                name="answers"
+                value="ans3"
+              />
+              <label class="btn btn-primary" for="ans3">string</label>
+
+              <input
+                class="btn-check"
+                type="radio"
+                id="ans4"
+                name="answers"
+                value="ans4"
+              />
+              <label class="btn btn-primary" for="ans4">bool</label>
             </form>
-            <button class="btn btn-success" type="submit">Submit</button>
+            <button
+              class="btn btn-success submit-btn"
+              type="submit"
+              value="Submit"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
@@ -68,10 +105,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
-    <!-- jquery and related scripts-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="./assets/java/jquery.js"></script>
     <!-- LINK JS-->
-    <script type="text/Java" src="./assets/java/java.js"></script>
+    <script type="text/JavaScript" src="./assets/java/java.js"></script>
   </body>
 </html>
