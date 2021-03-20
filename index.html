@@ -43,7 +43,7 @@
               />
             </div>
             <!-- Java interacts with this class for quiz functionality-->
-            <form class="questions">
+            <form class="questions" id="question-form">
               <h6>What is not a valid variable type in JavaScript</h6>
               <input
                 class="btn-check"
@@ -80,14 +80,14 @@
                 value="ans4"
               />
               <label class="btn btn-primary" for="ans4">bool</label>
+              <button
+                class="btn btn-success submit-btn"
+                type="submit"
+                value="Submit"
+              >
+                Submit
+              </button>
             </form>
-            <button
-              class="btn btn-success submit-btn"
-              type="submit"
-              value="Submit"
-            >
-              Submit
-            </button>
           </div>
         </div>
       </div>
@@ -106,6 +106,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- LINK JS-->
-    <script type="text/JavaScript" src="./assets/java/java.js"></script>
+    <script src="./assets/java/java.js"></script>
   </body>
 </html>
