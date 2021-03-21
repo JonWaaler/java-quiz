@@ -10,21 +10,45 @@
 var questionCount = 0;
 
 // Timer
-var time = 100;
-var myInterval = window.setInterval(CountDownTimer, 1000);
+var time = 120;
+var myInterval;
 
 // Holds the quiz data
-var questions = ["how?", "what?", "where?", "when?", "why?"];
+var questions = [
+  "What is not a type in JavaScript?",
+  "Which of these creates a paragraph in html?",
+  "How do you save data to localStorage?",
+  "How would you append a 'p' element using innerHTML to the Element 'AppendMe'?",
+  "Which statement is not valid JavaScript?",
+];
 var questionChoices = [
-  ["how1", "how2", "how3", "how4"],
-  ["what1", "what2", "what3", "what4"],
-  ["where1", "where2", "where3", "where4"],
-  ["when1", "when2", "when3", "when4"],
-  ["why1", "why2", "why3", "why4"],
+  ["float", "number", "string", "bool"],
+  [
+    "document.createElement('p');",
+    "createElement('p');",
+    "innerHTML += <p></p>",
+    "new Element('p')",
+  ],
+  [
+    "local.Storage.save('key','value');",
+    "localStorage.setItem('key', 'value');",
+    "localDrive.save('key','value');",
+    "localDrive.sendItem('key','value');",
+  ],
+  [
+    "AppendMe.innerHTML.append('p');",
+    "AppendMe.innerHTML = '<p></p>';",
+    "AppendMe.innerHTML += '<p></p>';",
+    "AppendMe.innerHTML.create('p');",
+  ],
+  ["var name;", "var str = 'java';", "var x, y, z;", "float x = 2"],
 ];
 var userAnswers = [];
 var correctAnswers = [1, 1, 2, 3, 4];
 var userScore = 0;
+
+// Score get pushed into this array untill it hit length of 3
+var highScores = [];
 
 // get the form
 var form = document.getElementById("question-form");
@@ -35,7 +59,6 @@ LoadQuestion(questionCount);
 var FormSubmit_Handler = function (event) {
   // TODO: Store Answer in array
   userAnswers.push(GetAnswer());
-  console.log("UserAnswers: " + userAnswers);
 
   // prevent reload after submission
   event.preventDefault();
@@ -80,8 +103,15 @@ function GetAnswer() {
 
 // LoadQuestion creates DOM content in the form
 function LoadQuestion(questionNumber) {
-  console.log("LOADING QUESTION: " + questionNumber);
-  // Clear the inner html form
+  // If we load the first question, reset nessasary vars
+  if (questionNumber == 0) {
+    time = 120;
+    userAnswers = [];
+    clearInterval(myInterval);
+    myInterval = window.setInterval(CountDownTimer, 1000);
+  }
+
+  // Clear the inner html in form
   form.innerHTML = "";
   // add the first question to the innerHTML
   form.innerHTML += "<h6>" + questions[questionNumber] + "</h6>";
@@ -123,6 +153,10 @@ function CreateRadioButton(questionNumber) {
   form.appendChild(labelElement);
 }
 
+// +20 for correct answer
+// -10 for skipping
+// -5 for wrong answer
+// Bonus Points = time left * 0.5
 function ShowResults() {
   // clear the question off screen
   form.innerHTML = "";
@@ -137,10 +171,17 @@ function ShowResults() {
         i +
         ": </strong>" +
         userAnswers[i] +
-        "    + 20 pts</p>";
+        "    +20 pts</p>";
 
       // add point.
       userScore += 20;
+    } else if (userAnswers[i] == -1) {
+      // User skipped
+      form.innerHTML +=
+        '<p class="wrong"><strong>Question ' +
+        i +
+        ": </strong>Skipped   -10 pts</p>";
+      userScore -= 10;
     } else {
       //wrong answer
       form.innerHTML +=
@@ -148,7 +189,7 @@ function ShowResults() {
         i +
         ": </strong>" +
         userAnswers[i] +
-        "    - 5 pts</p>";
+        "    -5 pts</p>";
       userScore -= 5;
     }
   }
@@ -158,23 +199,59 @@ function ShowResults() {
   form.innerHTML +=
     "<h5>Your Score: " + (userScore + time * 0.5) + " points</h5>";
 
-  // Create submit button
-  var buttonElement = document.createElement("BUTTON");
-  buttonElement.classList.add("btn", "btn-success", "submit-btn");
-  buttonElement.innerText = "Submit";
-  buttonElement.setAttribute("type", "submit");
-  buttonElement.setAttribute("value", "submit");
-
-  // add button to quiz
-  form.appendChild(buttonElement);
+  window.setTimeout(SaveScore(), 2500);
+  window.setTimeout(ShowHighScores(), 3000);
 }
 
-function SaveScore() {}
+// TODO:
+function SaveScore() {
+  // push score into array
+  var name = prompt("Enter Initials!");
 
+  // We need to make sure we dont override the localStorage value
+  // Gets the priviously stored scores
+  if (localStorage.getItem("highscores") !== null) {
+    highScores = localStorage.getItem("highscores").split(",");
+  }
+
+  // We only want 7 highscores max
+  if (highScores.length < 7) {
+    // Now we push the score into the bottom
+    highScores.push(name + ": " + userScore);
+    localStorage.setItem("highscores", highScores);
+  }
+
+  // save score
+}
+
+function ShowHighScores() {
+  // Reset question count so the questions start from the beginning
+  questionCount = 0;
+
+  // Get priviously stored
+  if (localStorage.getItem("highscores") !== null) {
+    highScores = localStorage.getItem("highscores").split(",");
+  }
+
+  // TODO: We need to sort the score from highest to lowest
+
+  form.innerHTML = "";
+  form.innerHTML += "<h5>Top 3 Scores</h5>";
+  var orderedScoreList = document.createElement("OL");
+  form.appendChild(orderedScoreList);
+  for (i = 0; i < highScores.length; i++) {
+    orderedScoreList.innerHTML += "<li><p>" + highScores[i] + "pts</p></li>";
+  }
+}
+
+// Once the timer hits 0 they will no longer get points for completing the
+// quiz fast anymore.
 var timerElement = document.getElementById("timer");
 function CountDownTimer() {
-  time -= 1;
-  timerElement.innerHTML = time.toString();
+  if (time > 0) {
+    time -= 1;
+    timerElement.innerHTML = time.toString();
+  }
 }
 
 // When we press submit call FormSubmit_Handler()
