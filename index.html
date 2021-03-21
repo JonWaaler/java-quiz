@@ -30,7 +30,7 @@
           <!-- Contains the timer-->
           <div class="quiz-time">
             <h5>Time left:</h5>
-            <h5>60 sec</h5>
+            <h5 id="timer">60 sec</h5>
           </div>
 
           <!-- contains the quiz-->
@@ -44,48 +44,18 @@
             </div>
             <!-- Java interacts with this class for quiz functionality-->
             <form class="questions" id="question-form">
-              <h6>What is not a valid variable type in JavaScript</h6>
-              <input
-                class="btn-check"
-                type="radio"
-                id="ans1"
-                name="answers"
-                value="ans1"
-              />
-              <label class="btn btn-primary" for="ans1">number</label>
-
-              <input
-                class="btn-check"
-                type="radio"
-                id="ans2"
-                name="answers"
-                value="ans2"
-              />
-              <label class="btn btn-primary" for="ans2">float</label>
-
-              <input
-                class="btn-check"
-                type="radio"
-                id="ans3"
-                name="answers"
-                value="ans3"
-              />
-              <label class="btn btn-primary" for="ans3">string</label>
-
-              <input
-                class="btn-check"
-                type="radio"
-                id="ans4"
-                name="answers"
-                value="ans4"
-              />
-              <label class="btn btn-primary" for="ans4">bool</label>
+              <h5>Results</h5>
+              <p class="correct"><strong>Question 1:</strong> A.</p>
+              <p class="wrong"><strong>Question 2:</strong> A.</p>
+              <p class="wrong"><strong>Question 3:</strong> A.</p>
+              <p class="correct"><strong>Question 4:</strong> A.</p>
+              <p class="correct"><strong>Question 5:</strong> A.</p>
               <button
                 class="btn btn-success submit-btn"
                 type="submit"
                 value="Submit"
               >
-                Submit
+                Try Again
               </button>
             </form>
           </div>
