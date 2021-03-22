@@ -237,7 +237,6 @@ function SaveScore() {
       highScores[highScores.length - 1] = name + ": " + userScore;
       localStorage.setItem("highscores", highScores);
     } else {
-      console.log("New score not good enough");
       form.innerHTML += '<p class="wrong">new score not high enough.</p>';
     }
   }
@@ -259,7 +258,7 @@ function ShowHighScores() {
   // TODO: We need to sort the score from highest to lowest
 
   form.innerHTML = "";
-  form.innerHTML += "<h5>Top 3 Scores</h5>";
+  form.innerHTML += "<h5>Top 7 Scores</h5>";
   var orderedScoreList = document.createElement("OL");
   form.appendChild(orderedScoreList);
   for (i = 0; i < highScores.length; i++) {
@@ -279,9 +278,7 @@ function BubbleSort_desending(arr) {
       // Split stored value at " " to get the number
       var num1 = arr[j].split(" ");
       var num2 = arr[j + 1].split(" ");
-      console.log(num1[1]);
-      console.log(num2[1]);
-      console.log("_______");
+
       if (parseInt(num1[1]) < parseInt(num2[1])) {
         //Swap the numbers
         var tmp = arr[j]; //Temporary variable to hold the current number
@@ -290,7 +287,6 @@ function BubbleSort_desending(arr) {
       }
     }
   }
-  console.log(arr);
 }
 
 // Once the timer hits 0 they will no longer get points for completing the
