@@ -15,6 +15,8 @@ To learn how to use more advaced DOM using vanilla JS. Point system scoring.
 - [setInterval](https://www.w3schools.com/js/js_timing.asp)
 - [Check if radio button selected](https://stackoverflow.com/questions/1423777/how-can-i-check-whether-a-radio-button-is-selected-with-javascript)
 - [local storage with arrays](https://stackoverflow.com/questions/56949873/how-to-store-and-retrieve-multidimensional-array-in-local-storage-javascript)
+- [Bubble Sort Algorithm](https://stackoverflow.com/questions/7502489/bubble-sort-algorithm-javascript)
+- [White Space detector](http://jsfiddle.net/7L557L26/1/)
 
 ## Built With
 

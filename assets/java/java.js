@@ -207,7 +207,11 @@ function ShowResults() {
 function SaveScore() {
   // push score into array
   var name = prompt("Enter Initials!");
-
+  // Regex used to make sure there's no white spaces in input
+  // No idea really what im looking at
+  if (!/^\S{3,}$/.test(name)) {
+    return SaveScore();
+  }
   // We need to make sure we dont override the localStorage value
   // Gets the priviously stored scores
   if (localStorage.getItem("highscores") !== null) {
@@ -219,9 +223,24 @@ function SaveScore() {
     // Now we push the score into the bottom
     highScores.push(name + ": " + userScore);
     localStorage.setItem("highscores", highScores);
-  }
+  } else {
+    // if we have more than 7 we need to see if this score is better than
+    // the worst score in highscores
+    // 1. make sure lowest score is at the bottom
+    BubbleSort_desending(highScores);
 
-  // save score
+    // 2. check if new score better (the number will be in the element 1 of the array)
+    var extractedScore = highScores[highScores.length - 1].split(" ");
+
+    // If new score is higher than lowest -> replace score
+    if (userScore > extractedScore[1]) {
+      highScores[highScores.length - 1] = name + ": " + userScore;
+      localStorage.setItem("highscores", highScores);
+    } else {
+      console.log("New score not good enough");
+      form.innerHTML += '<p class="wrong">new score not high enough.</p>';
+    }
+  }
 }
 
 function ShowHighScores() {
@@ -231,6 +250,10 @@ function ShowHighScores() {
   // Get priviously stored
   if (localStorage.getItem("highscores") !== null) {
     highScores = localStorage.getItem("highscores").split(",");
+
+    // now that we've established that there were privious scores we need
+    // to sort the scores before putting them on screen. Highest -> lowest
+    BubbleSort_desending(highScores);
   }
 
   // TODO: We need to sort the score from highest to lowest
@@ -242,6 +265,32 @@ function ShowHighScores() {
   for (i = 0; i < highScores.length; i++) {
     orderedScoreList.innerHTML += "<li><p>" + highScores[i] + "pts</p></li>";
   }
+}
+
+// Algorithm from: https://tinyurl.com/rmrc658 (cited in resources aswell)
+function BubbleSort_desending(arr) {
+  var length = arr.length;
+
+  // Modified bubble sort to pull number from string
+  for (var i = 0; i < length; i++) {
+    // j < (length - i). This is an optimization for the bubble sort pattern
+    for (var j = 0; j < length - i - 1; j++) {
+      //Compare the adjacent positions
+      // Split stored value at " " to get the number
+      var num1 = arr[j].split(" ");
+      var num2 = arr[j + 1].split(" ");
+      console.log(num1[1]);
+      console.log(num2[1]);
+      console.log("_______");
+      if (parseInt(num1[1]) < parseInt(num2[1])) {
+        //Swap the numbers
+        var tmp = arr[j]; //Temporary variable to hold the current number
+        arr[j] = arr[j + 1]; //Replace current number with adjacent number
+        arr[j + 1] = tmp; //Replace adjacent number with current number
+      }
+    }
+  }
+  console.log(arr);
 }
 
 // Once the timer hits 0 they will no longer get points for completing the
